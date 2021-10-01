@@ -12,17 +12,33 @@ export class InfoPaginaService {
   info: InfoPagina = {};
   cargada: boolean = false;
 
-  constructor( private http: HttpClient ) {
-    //console.log('Servicio de pagina lista');
+  equipo: any[] = [];
 
+  constructor(private http: HttpClient) {
+  
+    this.cargarInfo();
+
+    this.cargarEquipo();
+
+  }
+  
+  private cargarInfo() {
     // Leer archivo JSON 
     this.http.get('assets/data/data-pagina.json')
-      .subscribe( (resp: InfoPagina) => {
+      .subscribe((resp: InfoPagina) => {
         this.cargada = true;
         this.info = resp;
 
-        console.log(resp);
-      })
-
+    })
   }
+
+  private cargarEquipo() {
+    //Cargar Equipo
+    this.http.get('https://myportafolio-fb3d2-default-rtdb.firebaseio.com/equipo.json')
+    .subscribe((resp: any) => {
+      this.equipo = resp;
+      console.log(resp);
+    })    
+  }
+
 }
