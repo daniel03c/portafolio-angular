@@ -37,7 +37,7 @@ export class InfoPaginaService {
     this.http.get('https://myportafolio-fb3d2-default-rtdb.firebaseio.com/equipo.json')
     .subscribe((resp: any) => {
       this.equipo = resp;
-      console.log(resp);
+      //console.log(resp);
     })    
   }
 
